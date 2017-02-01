@@ -1,4 +1,5 @@
 <link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/cmacc-wc-forms/cmacc-wc-forms-person.html">
 
 <dom-module id="cmacc-wc-demo-app">
   <template>
@@ -7,7 +8,13 @@
         display: block;
       }
     </style>
-    <h2>Hello [[prop1]]</h2>
+
+    <h1>Person 1</h1>
+    <cmacc-wc-forms-person data="{{data.person1}}"></cmacc-wc-forms-person>
+    <h1>Person 2</h1>
+    <cmacc-wc-forms-person data="{{data.person2}}"></cmacc-wc-forms-person>
+
+    {{data}}
   </template>
 
   <script>
@@ -16,9 +23,9 @@
       is: 'cmacc-wc-demo-app',
 
       properties: {
-        prop1: {
-          type: String,
-          value: 'cmacc-wc-demo-app',
+        data: {
+          type: Object,
+          value: {},
         },
       },
 
