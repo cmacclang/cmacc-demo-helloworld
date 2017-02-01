@@ -3,7 +3,9 @@
   "main": "index.html",
   "dependencies": {
     "polymer": "Polymer/polymer#^1.4.0",
-    "cmacc-wc-forms": "cmacclang/cmacc-wc-forms"
+    "cmacc-wc-forms": "cmacclang/cmacc-wc-forms",
+    "neon-animation": "PolymerElements/neon-animation#^1.2.4",
+    "marked-element": "PolymerElements/marked-element#^1.3.0"
   },
   "devDependencies": {
     "iron-component-page": "PolymerElements/iron-component-page#^1.0.0",

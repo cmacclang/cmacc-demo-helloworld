@@ -1,0 +1,43 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/cmacc-wc-forms/cmacc-wc-forms-person.html">
+
+
+<dom-module id="cmacc-wc-demo-form">
+    <template>
+        <style>
+            :host {
+                display: block;
+            }
+        </style>
+
+        <h2>Person 1</h2>
+        <cmacc-wc-forms-person data="{{data.person1}}"></cmacc-wc-forms-person>
+
+        <h2>Person 2</h2>
+        <cmacc-wc-forms-person data="{{data.person2}}"></cmacc-wc-forms-person>
+
+    </template>
+
+    <script>
+        Polymer({
+
+            is: 'cmacc-wc-demo-form',
+
+            properties: {
+                data: {
+                    type: Object,
+                    value: {},
+                    notify: true
+                }
+            },
+
+            attached: function () {
+                this.set('data', {
+                    person1: {},
+                    person2: {}
+                })
+            }
+
+        });
+    </script>
+</dom-module>

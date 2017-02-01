@@ -1,34 +1,106 @@
 <link rel="import" href="../../bower_components/polymer/polymer.html">
-<link rel="import" href="../../bower_components/cmacc-wc-forms/cmacc-wc-forms-person.html">
+
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../../bower_components/paper-material/paper-material.html">
+
+<link rel="import" href="../../bower_components/marked-element/marked-element.html">
+
+<link rel="import" href="../../bower_components/neon-animation/neon-animated-pages.html">
+<link rel="import" href="../../bower_components/neon-animation/animations/slide-right-animation.html">
+<link rel="import" href="../../bower_components/neon-animation/animations/slide-left-animation.html">
+<link rel="import" href="../../bower_components/neon-animation/animations/slide-from-right-animation.html">
+<link rel="import" href="../../bower_components/neon-animation/animations/slide-from-left-animation.html">
+<link rel="import" href="../../bower_components/neon-animation/animations/fade-out-animation.html">
+
+<link rel="import" href="./cmacc-wc-demo-form.html">
 
 <dom-module id="cmacc-wc-demo-app">
-  <template>
-    <style>
-      :host {
-        display: block;
-      }
-    </style>
+    <template>
 
-    <h1>Person 1</h1>
-    <cmacc-wc-forms-person data="{{data.person1}}"></cmacc-wc-forms-person>
-    <h1>Person 2</h1>
-    <cmacc-wc-forms-person data="{{data.person2}}"></cmacc-wc-forms-person>
+        <style>
+            :host {
+                display: block;
+            }
 
-    {{data}}
-  </template>
+            paper-material {
+                background-color: white;
+                padding: 20px;
+                margin: 20px;
+            }
 
-  <script>
-    Polymer({
+            paper-button {
+                background-color: lightgray;
+            }
+        </style>
 
-      is: 'cmacc-wc-demo-app',
 
-      properties: {
-        data: {
-          type: Object,
-          value: {},
-        },
-      },
+        <neon-animated-pages attr-for-selected="key" selected="{{page}}" entry-animation="[[entryAnimation]]"
+                             exit-animation="[[exitAnimation]]">
 
-    });
-  </script>
+
+            <paper-material key="form" elevation="1">
+                <cmacc-wc-demo-form data="{{data}}"></cmacc-wc-demo-form>
+                <paper-button on-tap="generate" class="primary">Generate</paper-button>
+
+            </paper-material>
+
+
+            <paper-material key="doc" elevation="1">
+                <marked-element markdown="{{md}}"></marked-element>
+                <br>
+                <paper-button on-tap="back" class="primary">Back</paper-button>
+            </paper-material>
+
+
+        </neon-animated-pages>
+
+
+    </template>
+
+    <script>
+        Polymer({
+
+            is: 'cmacc-wc-demo-app',
+
+            properties: {
+                page: {
+                    type: String,
+                    value: "form"
+                },
+                data: {
+                    type: Object,
+                    value: {}
+                }
+            },
+
+            generate: function () {
+
+                if (!window.location.origin) {
+                    window.location.origin = window.location.protocol + "//" + window.location.hostname + (window.location.port ? ':' + window.location.port : '');
+                }
+
+                var doc = cmacc.compile(window.location.origin + "/cmacc/Form.cmacc");
+
+                doc.person1.firstName = this.data.person1.firstName;
+                doc.person1.lastName = this.data.person1.lastName;
+                doc.person2.firstName = this.data.person2.firstName;
+                doc.person2.lastName = this.data.person2.lastName;
+
+                var md = cmacc.resolve(doc);
+
+                this.set('md', md);
+                this.set('entryAnimation', 'slide-from-right-animation');
+                this.set('exitAnimation', 'slide-left-animation');
+                this.set('page', 'doc');
+            },
+
+            back: function () {
+                this.set('entryAnimation', 'slide-from-left-animation');
+                this.set('exitAnimation', 'slide-right-animation');
+                this.set('page', 'form');
+            }
+
+
+        });
+    </script>
 </dom-module>
