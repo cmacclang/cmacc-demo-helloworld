@@ -5,14 +5,13 @@
 
 <link rel="import" href="../../bower_components/marked-element/marked-element.html">
 
-<link rel="import" href="../../bower_components/neon-animation/neon-animated-pages.html">
-<link rel="import" href="../../bower_components/neon-animation/animations/slide-right-animation.html">
-<link rel="import" href="../../bower_components/neon-animation/animations/slide-left-animation.html">
-<link rel="import" href="../../bower_components/neon-animation/animations/slide-from-right-animation.html">
-<link rel="import" href="../../bower_components/neon-animation/animations/slide-from-left-animation.html">
-<link rel="import" href="../../bower_components/neon-animation/animations/fade-out-animation.html">
+<link rel="import" href="../../bower_components/flip-card/flip-card.html">
 
 <link rel="import" href="./cmacc-wc-demo-form.html">
+
+<link rel="import" href="../../bower_components/app-layout/app-header-layout/app-header-layout.html">
+<link rel="import" href="../../bower_components/app-layout/app-header/app-header.html">
+<link rel="import" href="../../bower_components/app-layout/app-toolbar/app-toolbar.html">
 
 <dom-module id="cmacc-wc-demo-app">
     <template>
@@ -31,28 +30,66 @@
             paper-button {
                 background-color: lightgray;
             }
+
+            app-header {
+                background-color: steelblue;
+                color: #fff;
+                height:100px;
+
+            }
+
+            .title {
+                font-size: 25pt;
+            }
+
+            section {
+                padding: 88px 16px;
+            }
+
+            .container {
+                @apply(--layout-horizontal);
+                max-width: auto;
+                margin: 0 auto;
+            }
+            .container > * {
+                @apply(--layout-flex);
+            }
+
         </style>
 
+        <app-header-layout fullbleed>
+            <app-header fixed condenses effects="waterfall">
+                <app-toolbar>
+                    <div class="title" main-title>CmaccLang Interface, Proof Of Concept</div>
+                </app-toolbar>
+            </app-header>
+            <section>
+            <div class="container">
+                <flip-card noHover flipped="{{flipped}}">
+                    <front>
 
-        <neon-animated-pages attr-for-selected="key" selected="{{page}}" entry-animation="[[entryAnimation]]"
-                             exit-animation="[[exitAnimation]]">
+                        <paper-material key="form" elevation="1">
+                            <cmacc-wc-demo-form data="{{data}}"></cmacc-wc-demo-form>
+                            <paper-button on-tap="generate" class="primary">Generate</paper-button>
+
+                        </paper-material>
+                    </front>
+                    <back>
+                        <paper-material key="doc" elevation="1">
+                            <marked-element markdown="{{md}}"></marked-element>
+                            <br>
+                            <paper-button on-tap="back" class="primary">Back</paper-button>
+                        </paper-material>
+                    </back>
+                </flip-card>
+            </div>
+                </section>
+        </app-header-layout>
 
 
-            <paper-material key="form" elevation="1">
-                <cmacc-wc-demo-form data="{{data}}"></cmacc-wc-demo-form>
-                <paper-button on-tap="generate" class="primary">Generate</paper-button>
-
-            </paper-material>
 
 
-            <paper-material key="doc" elevation="1">
-                <marked-element markdown="{{md}}"></marked-element>
-                <br>
-                <paper-button on-tap="back" class="primary">Back</paper-button>
-            </paper-material>
 
-
-        </neon-animated-pages>
 
 
     </template>
@@ -89,14 +126,12 @@
                 var md = cmacc.resolve(doc);
 
                 this.set('md', md);
-                this.set('entryAnimation', 'slide-from-right-animation');
-                this.set('exitAnimation', 'slide-left-animation');
+                this.set('flipped', true)
                 this.set('page', 'doc');
             },
 
             back: function () {
-                this.set('entryAnimation', 'slide-from-left-animation');
-                this.set('exitAnimation', 'slide-right-animation');
+                this.set('flipped', false)
                 this.set('page', 'form');
             }
 
