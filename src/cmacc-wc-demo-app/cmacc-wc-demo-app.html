@@ -14,128 +14,122 @@
 <link rel="import" href="../../bower_components/app-layout/app-toolbar/app-toolbar.html">
 
 <dom-module id="cmacc-wc-demo-app">
-    <template>
+  <template>
 
-        <style>
-            :host {
-                display: block;
-            }
+    <style>
+      :host {
+        display: block;
+      }
 
-            paper-material {
-                background-color: white;
-                padding: 20px;
-                margin: 20px;
-            }
+      paper-material {
+        background-color: white;
+        padding: 20px;
+        margin: 20px;
+      }
 
-            paper-button {
-                background-color: lightgray;
-            }
+      paper-button {
+        background-color: lightgray;
+      }
 
-            app-header {
-                background-color: steelblue;
-                color: #fff;
-                height:100px;
+      app-header {
+        background-color: steelblue;
+        color: #fff;
+        height: 100px;
 
-            }
+      }
 
-            .title {
-                font-size: 25pt;
-            }
-
-            section {
-                padding: 88px 16px;
-            }
-
-            .container {
-                @apply(--layout-horizontal);
-                max-width: auto;
-                margin: 0 auto;
-            }
-            .container > * {
-                @apply(--layout-flex);
-            }
-
-        </style>
-
-        <app-header-layout fullbleed>
-            <app-header fixed condenses effects="waterfall">
-                <app-toolbar>
-                    <div class="title" main-title>CmaccLang Interface, Proof Of Concept</div>
-                </app-toolbar>
-            </app-header>
-            <section>
-            <div class="container">
-                <flip-card noHover flipped="{{flipped}}">
-                    <front>
-
-                        <paper-material key="form" elevation="1">
-                            <cmacc-wc-demo-form data="{{data}}"></cmacc-wc-demo-form>
-                            <paper-button on-tap="generate" class="primary">Generate</paper-button>
-
-                        </paper-material>
-                    </front>
-                    <back>
-                        <paper-material key="doc" elevation="1">
-                            <marked-element markdown="{{md}}"></marked-element>
-                            <br>
-                            <paper-button on-tap="back" class="primary">Back</paper-button>
-                        </paper-material>
-                    </back>
-                </flip-card>
-            </div>
-                </section>
-        </app-header-layout>
+      .title {
+        font-size: 25pt;
+      }
 
 
 
+      .container {
+        @apply(--layout-horizontal);
+        max-width: 1000px;
+        margin: 0 auto;
+      }
+
+      .container > * {
+        @apply(--layout-flex);
+      }
+
+    </style>
+
+    <app-header-layout fullbleed>
+      <app-header fixed condenses effects="waterfall">
+        <app-toolbar>
+          <div class="title" main-title>CmaccLang Interface, Proof Of Concept</div>
+        </app-toolbar>
+      </app-header>
+      <section>
+        <div class="container">
+          <flip-card noHover flipped="{{flipped}}">
+            <front>
+
+              <paper-material key="form" elevation="1">
+                <cmacc-wc-demo-form data="{{data}}"></cmacc-wc-demo-form>
+                <paper-button on-tap="generate" class="primary">Generate</paper-button>
+
+              </paper-material>
+            </front>
+            <back>
+              <paper-material key="doc" elevation="1">
+                <marked-element markdown="{{md}}"></marked-element>
+                <br>
+                <paper-button on-tap="back" class="primary">Back</paper-button>
+              </paper-material>
+            </back>
+          </flip-card>
+        </div>
+      </section>
+    </app-header-layout>
 
 
+  </template>
+
+  <script>
+      Polymer({
+
+          is: 'cmacc-wc-demo-app',
+
+          properties: {
+              page: {
+                  type: String,
+                  value: "form"
+              },
+              data: {
+                  type: Object,
+                  value: {}
+              }
+          },
+
+          generate: function () {
+
+              if (!window.location.origin) {
+                  window.location.origin = window.location.protocol + "//" + window.location.hostname + (window.location.port ? ':' + window.location.port : '');
+              }
+
+              var doc = cmacc.compile(window.location.origin + "/cmacc/Form.cmacc");
+
+              doc.person1.firstName = this.data.person1.firstName;
+              doc.person1.lastName = this.data.person1.lastName;
+              doc.person2.firstName = this.data.person2.firstName;
+              doc.person2.lastName = this.data.person2.lastName;
+
+              var md = cmacc.resolve(doc);
+
+              this.set('md', md);
+              this.set('flipped', true)
+              this.set('page', 'doc');
+          },
+
+          back: function () {
+              this.set('flipped', false)
+              this.set('page', 'form');
+          }
 
 
-    </template>
-
-    <script>
-        Polymer({
-
-            is: 'cmacc-wc-demo-app',
-
-            properties: {
-                page: {
-                    type: String,
-                    value: "form"
-                },
-                data: {
-                    type: Object,
-                    value: {}
-                }
-            },
-
-            generate: function () {
-
-                if (!window.location.origin) {
-                    window.location.origin = window.location.protocol + "//" + window.location.hostname + (window.location.port ? ':' + window.location.port : '');
-                }
-
-                var doc = cmacc.compile(window.location.origin + "/cmacc/Form.cmacc");
-
-                doc.person1.firstName = this.data.person1.firstName;
-                doc.person1.lastName = this.data.person1.lastName;
-                doc.person2.firstName = this.data.person2.firstName;
-                doc.person2.lastName = this.data.person2.lastName;
-
-                var md = cmacc.resolve(doc);
-
-                this.set('md', md);
-                this.set('flipped', true)
-                this.set('page', 'doc');
-            },
-
-            back: function () {
-                this.set('flipped', false)
-                this.set('page', 'form');
-            }
-
-
-        });
-    </script>
+      });
+  </script>
 </dom-module>
