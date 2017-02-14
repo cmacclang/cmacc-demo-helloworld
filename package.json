@@ -14,7 +14,7 @@
   },
   "devDependencies": {},
   "scripts": {
-    "postinstall": "./node_modules/bower/bin/bower install && webpack",
+    "postinstall": "./node_modules/bower/bin/bower install && ./node_modules/webpack/bin/webpack.js",
     "start": "node ./server.js"
   },
   "repository": {
