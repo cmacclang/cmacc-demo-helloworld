@@ -7,7 +7,8 @@
     "neon-animation": "PolymerElements/neon-animation#^1.2.4",
     "marked-element": "PolymerElements/marked-element#^1.3.0",
     "flip-card": "^1.1.0",
-    "app-layout": "PolymerElements/app-layout#^0.10.6"
+    "app-layout": "PolymerElements/app-layout#^0.10.6",
+    "cmacc-elements-form": "cmacclang/cmacc-elements-form"
   },
   "devDependencies": {
     "iron-component-page": "PolymerElements/iron-component-page#^1.0.0",

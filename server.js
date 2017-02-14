@@ -1,7 +1,22 @@
 var express = require('express')
 var app = express();
 
+var fs = require('fs');
+var path = require('path');
+
 var port = process.env.PORT || 3000;
+var cmaccApi = require('cmacc-api');
+
+app.get("/cmacc/*", function (req, res, next) {
+    var file = path.join(__dirname, req.url);
+    fs.readFile(file, function (err, data) {
+        res.send(data);
+    })
+
+});
+
+var cmaccDir = path.join(__dirname, "/cmacc");
+app.use("/api", cmaccApi(cmaccDir));
 
 app.use(express.static(__dirname));
 

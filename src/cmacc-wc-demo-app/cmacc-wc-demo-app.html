@@ -1,17 +1,8 @@
 <link rel="import" href="../../bower_components/polymer/polymer.html">
 
-<link rel="import" href="../../bower_components/paper-button/paper-button.html">
-<link rel="import" href="../../bower_components/paper-material/paper-material.html">
-
-<link rel="import" href="../../bower_components/marked-element/marked-element.html">
-
-<link rel="import" href="../../bower_components/flip-card/flip-card.html">
+<link rel="import" href="../../bower_components/cmacc-elements-demo/cmacc-elements-demo.html">
 
 <link rel="import" href="./cmacc-wc-demo-form.html">
-
-<link rel="import" href="../../bower_components/app-layout/app-header-layout/app-header-layout.html">
-<link rel="import" href="../../bower_components/app-layout/app-header/app-header.html">
-<link rel="import" href="../../bower_components/app-layout/app-toolbar/app-toolbar.html">
 
 <dom-module id="cmacc-wc-demo-app">
   <template>
@@ -56,34 +47,11 @@
 
     </style>
 
-    <app-header-layout fullbleed>
-      <app-header fixed condenses effects="waterfall">
-        <app-toolbar>
-          <div class="title" main-title>CmaccLang Interface, Proof Of Concept</div>
-        </app-toolbar>
-      </app-header>
-      <section>
-        <div class="container">
-          <flip-card noHover flipped="{{flipped}}">
-            <front>
-
-              <paper-material key="form" elevation="1">
-                <cmacc-wc-demo-form data="{{data}}"></cmacc-wc-demo-form>
-                <paper-button on-tap="generate" class="primary">Generate</paper-button>
-
-              </paper-material>
-            </front>
-            <back>
-              <paper-material key="doc" elevation="1">
-                <marked-element markdown="{{md}}"></marked-element>
-                <br>
-                <paper-button on-tap="back" class="primary">Back</paper-button>
-              </paper-material>
-            </back>
-          </flip-card>
-        </div>
-      </section>
-    </app-header-layout>
+    <cmacc-elements-demo title="CDC demo" file="/cmacc/Form.cmacc" data="{{data}}" merge="{{">
+      <form>
+        <cmacc-wc-demo-form data="{{data}}"></cmacc-wc-demo-form>
+      </form>
+    </cmacc-elements-demo>
 
 
   </template>
@@ -92,42 +60,14 @@
       Polymer({
 
           is: 'cmacc-wc-demo-app',
+          properties:{
+              merge:{
+                  type:Function,
+                  value:function (doc, data) {
 
-          properties: {
-              page: {
-                  type: String,
-                  value: "form"
-              },
-              data: {
-                  type: Object,
-                  value: {}
+                  }
               }
           },
-
-          generate: function () {
-
-              if (!window.location.origin) {
-                  window.location.origin = window.location.protocol + "//" + window.location.hostname + (window.location.port ? ':' + window.location.port : '');
-              }
-
-              var doc = cmacc.compile(window.location.origin + "/cmacc/Form.cmacc");
-
-              doc.person1.firstName = this.data.person1.firstName;
-              doc.person1.lastName = this.data.person1.lastName;
-              doc.person2.firstName = this.data.person2.firstName;
-              doc.person2.lastName = this.data.person2.lastName;
-
-              var md = cmacc.resolve(doc);
-
-              this.set('md', md);
-              this.set('flipped', true)
-              this.set('page', 'doc');
-          },
-
-          back: function () {
-              this.set('flipped', false)
-              this.set('page', 'form');
-          }
 
 
       });
