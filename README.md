@@ -1,4 +1,4 @@
-# \<cmacc-wc-demo\>
+# \<cmacc-demo-helloworld\>
 
 
 
