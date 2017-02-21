@@ -1,0 +1,29 @@
+$ party1 = [../ID/MarcDangeard.cmacc];
+
+$ party2 = [../ID/WillemVeelenturf.cmacc];
+
+$ intro = [../Form/intro.cmacc];
+
+$ who = [../Form/who.cmacc] => {
+	"party1" : party1,
+	"party2" : party2
+};
+
+$ what = [./what.cmacc];
+
+$ misc = [./general_clauses.cmacc];
+
+$ closing = [../Form/closing.cmacc] => {
+    "party1" : party1,
+    "party2": party2
+};
+
+$ content = [../Form/draft1.cmacc] => {
+	"intro" : intro,
+	"what" : what,
+	"misc" : misc,
+	"closing" : closing
+};
+
+{{content}}
+
