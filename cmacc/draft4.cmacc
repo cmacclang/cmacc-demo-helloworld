@@ -1,36 +1,29 @@
-$ party1 = [../ID/JamesHazard.cmacc];
+$ party1 = [yarn://cmacc-example-id/MarcDangeard.cmacc];
 
-$ party2 = [../ID/WillemVeelenturf.cmacc];
+//Changing Party2 from Draft1 - should read Willen Veelenturf instead of James Hazard
+$ party2 = [yarn://cmacc-example-id/WillemVeelenturf.cmacc];
 
-$ content = [../Form/draft1.cmacc] => {
-	"who" :{
-		"party1": party1,
-		"party2": party2
-	},
-	"closing" :{
-	    "signParty1":{
-			"person": party1
-	    },
-	    "signParty2":{
-			"person": party2
-	    }
-	}
+// also changes some of the items in the list (replacing what by clause2 and clause1 by clause4)
+
+$ intro = [./Intro.cmacc];
+
+$ misc = [./GeneralClauses.cmacc];
+
+$ content = [./Draft1.cmacc] => {
+	"party1": party1,
+	"party2": party2
 };
 
-$ intro = [../Form/intro.cmacc];
-
-$ misc = [../Form/general_clauses.cmacc];
+// Document
 
 {{intro}}
 
- 1. {{content.who}}
+1. {{content.who}}
 
- 2. {{misc.clause2}}
+2. {{content.what}}
 
- 3. {{misc.clause4}}
+3. {{misc.clause2}}
+
+4. {{misc.clause4}}
 
 {{content.closing}}
-
-
-
-

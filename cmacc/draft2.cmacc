@@ -1,29 +1,31 @@
-$ party1 = [../ID/MarcDangeard.cmacc];
+$ party1 = [yarn://cmacc-example-id/MarcDangeard.cmacc];
 
-$ party2 = [../ID/WillemVeelenturf.cmacc];
+// Replacing party 2 from Draft1 by somebody else
+$ party2 = [yarn://cmacc-example-id/RobertaRobinson.cmacc];
 
-$ intro = [../Form/intro.cmacc];
+$ intro = [./Intro.cmacc];
 
-$ who = [../Form/who.cmacc] => {
+$ what = [./What.cmacc];
+
+$ misc = [./GeneralClauses.cmacc];
+
+$ who = [./Who.cmacc] => {
 	"party1" : party1,
 	"party2" : party2
 };
 
-$ what = [./what.cmacc];
-
-$ misc = [./general_clauses.cmacc];
-
-$ closing = [../Form/closing.cmacc] => {
+$ closing = [./Closing.cmacc] => {
     "party1" : party1,
     "party2": party2
 };
 
-$ content = [../Form/draft1.cmacc] => {
+// Document - passing all parameters, with party2 changed
+$ content = [./Draft1.cmacc] => {
 	"intro" : intro,
+	"who" : who,
 	"what" : what,
 	"misc" : misc,
 	"closing" : closing
 };
 
 {{content}}
-

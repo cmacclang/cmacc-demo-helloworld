@@ -1,43 +1,31 @@
-$ party1 = [../ID/MarcDangeard.cmacc];
+$ party1 = [./_Person.cmacc];
 
-$ party2 = [../ID/JamesHazard.cmacc];
+$ party2 = [./_Person.cmacc];
 
-$ intro = [../Form/intro.cmacc];
+$ intro = [./Intro.cmacc];
 
-$ what = [../Form/what.cmacc];
-
-$ misc = [../Form/general_clauses.cmacc];
-
-$ who = [../Form/who.cmacc] => {
+$ who = [./Who.cmacc] => {
 	"party1" : party1,
 	"party2" : party2
 };
 
-$ closing = [../Form/closing.cmacc] => {
+$ what = [./What.cmacc];
+
+$ misc = [./GeneralClauses.cmacc];
+
+$ closing = [./Closing.cmacc] => {
     "party1" : party1,
     "party2": party2
 };
 
+// Document
+
 {{intro}}
 
- 1. {{who}}
+1. {{who}}
 
- 2. {{what}}
+2. {{what}}
 
- 3. {{misc.clause1}}
+3. {{misc.clause1}}
 
 {{closing}}
-
-
-
-
-
-
-
-
-
-
-
-
-
-

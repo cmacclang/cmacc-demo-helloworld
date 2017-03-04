@@ -1,0 +1,75 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+
+<link rel="import" href="../../bower_components/cmacc-elements-demo/cmacc-elements-demo.html">
+
+<link rel="import" href="./cmacc-wc-test-draft1-form.html">
+
+<dom-module id="cmacc-wc-test-draft1-app">
+  <template>
+
+    <style>
+      :host {
+        display: block;
+      }
+
+      paper-material {
+        background-color: white;
+        padding: 20px;
+        margin: 20px;
+      }
+
+      paper-button {
+        background-color: lightgray;
+      }
+
+      app-header {
+        background-color: steelblue;
+        color: #fff;
+        height: 100px;
+
+      }
+
+      .title {
+        font-size: 25pt;
+      }
+
+
+
+      .container {
+        @apply(--layout-horizontal);
+        max-width: 1000px;
+        margin: 0 auto;
+      }
+
+      .container > * {
+        @apply(--layout-flex);
+      }
+
+    </style>
+
+    <cmacc-elements-demo title="Testing..." file="/cmacc/Draft1.cmacc" data="{{data}}" merge="{{">
+      <form>
+        <cmacc-wc-test-draft1-form data="{{data}}"></cmacc-wc-test-draft1-form>
+      </form>
+    </cmacc-elements-demo>
+
+
+  </template>
+
+  <script>
+      Polymer({
+
+          is: 'cmacc-wc-test-draft1-app',
+          properties:{
+              merge:{
+                  type:Function,
+                  value:function (doc, data) {
+
+                  }
+              }
+          },
+
+
+      });
+  </script>
+</dom-module>

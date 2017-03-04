@@ -1,33 +1,36 @@
-$ party1 = [../ID/MarcDangeard.cmacc];
+$ party1 = [yarn://cmacc-example-id/MarcDangeard.cmacc];
 
-$ party2 = [../ID/WillemVeelenturf.cmacc];
+//Changing Party2 from Draft3 - should read Roberta Robinson instead Willen Veelenturf
+$ party2 = [yarn://cmacc-example-id/RobertaRobinson.cmacc];
 
-$ content = [../Form/draft3.cmacc] => {
+$ content = [./Draft3.cmacc] => {
 	"party2" : party2
 };
 
-$ intro = [../Form/intro.cmacc];
+$ intro = [./Intro.cmacc];
 
-$ who = [../Form/who.cmacc] => {
+$ who = [./Who.cmacc] => {
 	"party1" : party1,
 	"party2" : party2
 };
 
-$ misc = [../Form/general_clauses.cmacc];
+$ misc = [./GeneralClauses.cmacc];
 
-$ closing = [../Form/closing.cmacc] => {
+$ closing = [./Closing.cmacc] => {
 	"party1" : party1,
 	"party2" : party2
 };
+
+// Document - also modifying misc clauses from Draft3 to use clause3 and clause5 instead
 
 {{intro}}
 
 1. {{who}}
 
-2. {{misc.clause3}}
+2. {{content.content.what}}
 
-3. {{misc.clause5}}
+3. {{misc.clause3}}
+
+4. {{misc.clause5}}
 
 {{closing}}
-
-

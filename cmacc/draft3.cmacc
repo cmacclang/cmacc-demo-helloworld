@@ -1,15 +1,13 @@
-$ party2 = [../ID/WillemVeelenturf.cmacc];
+$ party1 = [yarn://cmacc-example-id/MarcDangeard.cmacc];
 
-$ content = [../Form/draft1.cmacc] => {
-	"who" :{
-	    "party2": party2
-	},
-	"closing" :{
-	    "signParty2":{
-	   	 "person": party2
-	    }
-	}
+//Changing Party2 from Draft1 - should read Willen Veelenturf instead of James Hazard
+$ party2 = [yarn://cmacc-example-id/WillemVeelenturf.cmacc];
+
+// Document - updating files where a parameter was changed, passing party2 new info
+$ content = [./Draft1.cmacc] => {
+	"party1": party1,
+	"party2": party2
 };
 
+// Updated Document
 {{content}}
-
