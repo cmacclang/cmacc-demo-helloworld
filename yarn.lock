@@ -326,9 +326,9 @@ cmacc-api@1.0.1:
     cmacc-compiler "1.0.15"
     express "^4.14.1"
 
-cmacc-compiler@1.0.15:
-  version "1.0.15"
-  resolved "https://registry.yarnpkg.com/cmacc-compiler/-/cmacc-compiler-1.0.15.tgz#899aab3c1557d56b63dccb3695cee8e9ee0c5435"
+cmacc-compiler@1.0.15, cmacc-compiler@1.0.17:
+  version "1.0.17"
+  resolved "https://registry.yarnpkg.com/cmacc-compiler/-/cmacc-compiler-1.0.17.tgz#a3d88bc47fb8555ce8c281bbf103edfa3aafd87f"
   dependencies:
     async "^2.0.1"
     cmacc-lib-entity "^1.0.0"

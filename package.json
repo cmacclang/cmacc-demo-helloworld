@@ -9,7 +9,7 @@
   "dependencies": {
     "bower": "^1.8.0",
     "cmacc-api": "1.0.1",
-    "cmacc-compiler": "1.0.16",
+    "cmacc-compiler": "1.0.17",
     "cmacc-example-id": "cmacclang/cmacc-example-id",
     "cmacc-lib-id": "cmacclang/cmacc-lib-id",
     "cmacc-lib-us": "cmacclang/cmacc-lib-us",
@@ -45,6 +45,7 @@
     "minimist": "1.2.0",
     "camelcase": "3.0.0",
     "cliui": "3.2.0",
-    "cmacc-lib-id": "1.1.4"
+    "cmacc-lib-id": "1.1.4",
+    "cmacc-compiler": "1.0.17"
   }
 }
