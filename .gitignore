@@ -3,3 +3,4 @@ node_modules
 assets
 .idea
 npm-debug.log
+yarn.lock
