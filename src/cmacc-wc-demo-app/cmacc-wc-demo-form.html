@@ -11,10 +11,10 @@
         </style>
 
         <h2>Person 1</h2>
-        <cmacc-elements-form-person data="{{data.person1}}"></cmacc-elements-form-person>
+        <cmacc-elements-form-person data="{{data.party1}}"></cmacc-elements-form-person>
 
         <h2>Person 2</h2>
-        <cmacc-elements-form-person data="{{data.person2}}"></cmacc-elements-form-person>
+        <cmacc-elements-form-person data="{{data.party2}}"></cmacc-elements-form-person>
 
     </template>
 
@@ -33,8 +33,8 @@
 
             attached: function () {
                 this.set('data', {
-                    person1: {},
-                    person2: {}
+                    party1: {},
+                    party2: {}
                 })
             }
         });
