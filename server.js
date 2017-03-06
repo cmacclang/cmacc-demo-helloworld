@@ -15,6 +15,8 @@ app.get("/cmacc/*", function (req, res, next) {
 
 });
 
+app.use('/node_modules', express.static('node_modules'))
+
 var cmaccDir = path.join(__dirname, "/cmacc");
 app.use("/api", cmaccApi(cmaccDir));
 

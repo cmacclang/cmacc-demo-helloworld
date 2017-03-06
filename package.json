@@ -9,7 +9,10 @@
   "dependencies": {
     "bower": "^1.8.0",
     "cmacc-api": "1.0.1",
-    "cmacc-compiler": "1.0.15",
+    "cmacc-compiler": "1.0.16",
+    "cmacc-example-id": "cmacclang/cmacc-example-id",
+    "cmacc-lib-id": "cmacclang/cmacc-lib-id",
+    "cmacc-lib-us": "cmacclang/cmacc-lib-us",
     "express": "^4.14.1",
     "webpack": "^2.2.1"
   },
@@ -27,5 +30,21 @@
   "bugs": {
     "url": "https://github.com/cmacclang/cmacc-wc-demo/issues"
   },
-  "homepage": "https://github.com/cmacclang/cmacc-wc-demo#readme"
+  "homepage": "https://github.com/cmacclang/cmacc-wc-demo#readme",
+  "flat": true,
+  "resolutions": {
+    "debug": "2.6.1",
+    "qs": "6.4.0",
+    "ms": "0.7.2",
+    "inherits": "2.0.3",
+    "caseless": "0.12.0",
+    "assert-plus": "1.0.0",
+    "punycode": "1.3.2",
+    "readable-stream": "2.1.5",
+    "yargs": "6.6.0",
+    "minimist": "1.2.0",
+    "camelcase": "3.0.0",
+    "cliui": "3.2.0",
+    "cmacc-lib-id": "1.1.4"
+  }
 }

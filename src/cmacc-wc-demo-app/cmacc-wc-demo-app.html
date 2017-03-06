@@ -47,7 +47,7 @@
 
     </style>
 
-    <cmacc-elements-demo title="CDC demo" file="/cmacc/Form.cmacc" data="{{data}}" merge="{{">
+    <cmacc-elements-demo title="CDC demo" file="/cmacc/Form.cmacc" data="{{data}}">
       <form>
         <cmacc-wc-demo-form data="{{data}}"></cmacc-wc-demo-form>
       </form>
@@ -58,18 +58,8 @@
 
   <script>
       Polymer({
-
           is: 'cmacc-wc-demo-app',
-          properties:{
-              merge:{
-                  type:Function,
-                  value:function (doc, data) {
-
-                  }
-              }
-          },
-
-
+          properties:{}
       });
   </script>
 </dom-module>
