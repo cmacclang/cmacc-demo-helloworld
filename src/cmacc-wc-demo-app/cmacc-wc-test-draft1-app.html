@@ -47,11 +47,15 @@
 
     </style>
 
+    <p>Test {{data.party1.firstName}}</p>
+
     <cmacc-elements-demo title="Testing..." file="/cmacc/draft1.cmacc" data="{{data}}">
       <form>
         <cmacc-wc-test-draft1-form data="{{data}}"></cmacc-wc-test-draft1-form>
       </form>
     </cmacc-elements-demo>
+
+
 
 
   </template>
@@ -61,13 +65,14 @@
 
           is: 'cmacc-wc-test-draft1-app',
           properties:{
-              merge:{
-                  type:Function,
-                  value:function (doc, data) {
-
-                  }
+              data: {
+                  type: Object,
+                  observer: '_dataChanged'
               }
           },
+          _dataChanged: function(newValue, oldValue) {
+              console.log("_dataChanged", newValue)
+          }
 
 
       });

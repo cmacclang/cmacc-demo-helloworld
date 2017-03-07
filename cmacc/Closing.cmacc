@@ -1,15 +1,15 @@
-$ party1 = [yarn://cmacc-lib-id/_individual.cmacc];
+$ party1 = [./_Person.cmacc];
 
-$ party2 = [yarn://cmacc-lib-id/_individual.cmacc];
+$ party2 = [./_Person.cmacc];
 
 $ signParty1 = [yarn://cmacc-lib-us/_sign.cmacc] => {
 	"role" : "Party1",
-	"person_Full_Name" : party1.full_Name
+	"person_Full_Name" : party1.fullName
 };
 
 $ signParty2 = [yarn://cmacc-lib-us/_sign.cmacc] => {
 	"role" : "Party2",
-	"person_Full_Name" : party2.full_Name
+	"person_Full_Name" : party2.fullName
 };
 
 IN WITNESS WHEREOF, the undersigned have caused this instrument to be duly executed and delivered.

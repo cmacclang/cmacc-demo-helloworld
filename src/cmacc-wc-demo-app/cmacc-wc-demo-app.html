@@ -59,7 +59,15 @@
   <script>
       Polymer({
           is: 'cmacc-wc-demo-app',
-          properties:{}
+          properties:{
+              data: {
+                  type: Object,
+                  observer: '_dataChanged'
+              }
+          },
+          _dataChanged: function(newValue, oldValue) {
+              console.log("_dataChanged", newValue)
+          }
       });
   </script>
 </dom-module>

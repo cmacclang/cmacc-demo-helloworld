@@ -1,7 +1,5 @@
-$ party1 = [yarn://cmacc-lib-id/_individual.cmacc] => {
-};
+$ party1 = [./_Person.cmacc];
 
-$ party2 = [yarn://cmacc-lib-id/_individual.cmacc] => {
-};
+$ party2 = [./_Person.cmacc];
 
-This agreement is between {{party1.full_Name}} and {{party2.full_Name}}
+This agreement is between {{party1.fullName}} and {{party2.fullName}}
