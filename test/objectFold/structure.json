@@ -1,0 +1,12 @@
+{
+  "person1": {
+    "firstName": "first name",
+    "lastName": "last name",
+    "fullName": "{{firstName}} {{lastName}}"
+  },
+  "person2": {
+    "firstName": "first name",
+    "lastName": "last name",
+    "fullName": "{{firstName}} {{lastName}}"
+  }
+}

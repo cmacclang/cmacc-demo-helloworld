@@ -4,6 +4,8 @@
 
 <link rel="import" href="./cmacc-wc-demo-form.html">
 
+<link rel="import" href="./cmacc-wc-generated-form.html">
+
 <dom-module id="cmacc-wc-demo-app">
   <template>
 
@@ -49,7 +51,7 @@
 
     <cmacc-elements-demo title="CDC demo" file="/cmacc/Form.cmacc" data="{{data}}">
       <form>
-        <cmacc-wc-demo-form data="{{data}}"></cmacc-wc-demo-form>
+        <cmacc-wc-generated-form data="{{data}}" file="Form.cmacc"></cmacc-wc-generated-form>
       </form>
     </cmacc-elements-demo>
 
@@ -68,6 +70,7 @@
           _dataChanged: function(newValue, oldValue) {
               console.log("_dataChanged", newValue)
           }
+
       });
   </script>
 </dom-module>

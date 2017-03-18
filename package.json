@@ -34,7 +34,7 @@
   "flat": true,
   "resolutions": {
     "debug": "2.6.1",
-    "qs": "6.4.0",
+    "qs": "6.3.0",
     "ms": "0.7.2",
     "inherits": "2.0.3",
     "caseless": "0.12.0",
@@ -46,6 +46,8 @@
     "camelcase": "3.0.0",
     "cliui": "3.2.0",
     "cmacc-lib-id": "1.1.4",
-    "cmacc-compiler": "1.0.17"
+    "cmacc-compiler": "1.0.17",
+    "async": "0.2.10",
+    "supports-color": "2.0.0"
   }
 }

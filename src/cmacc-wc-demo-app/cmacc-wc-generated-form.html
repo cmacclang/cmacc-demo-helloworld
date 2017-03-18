@@ -1,0 +1,97 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+
+<link rel="import" href="../../bower_components/paper-input/paper-input.html">
+
+<dom-module id="cmacc-wc-generated-form">
+    <template>
+        <style>
+        </style>
+
+        <!--TODO get json in list format, get json flat-->
+
+        <template id="input-fields" is="dom-repeat" items="{{viewdata}}">
+            <h3>{{item.key}}</h3>
+            <paper-input label="{{item.key}}" on-input='update' value="{{item.value}}"></paper-input>
+        </template>
+
+    </template>
+
+    <script>
+        Polymer({
+            is:'cmacc-wc-generated-form',
+            properties:{
+                data:{
+                    type:Object,
+                    value:{},
+                    notify:true
+                },
+                viewdata:{
+                    type:Array,
+                    value:[],
+
+                },
+                file:{
+                    type:String
+                }
+            },
+            created:function(){
+
+
+            },
+            ready:function(){
+
+
+
+
+
+
+            },
+            attached:function(){
+
+                var _this = this
+
+                var mappedList = function(structure, aggregateList) {
+
+                    var keys = Object.keys(structure)
+                    for (var i in keys){
+
+                        if(typeof structure[keys[i]] === 'object'){
+
+                            mappedList(structure[keys[i]], aggregateList);
+                        } else if(!(/^\{\{/.test(structure[keys[i]]))){
+
+                            aggregateList.push({key:keys[i], value:structure[keys[i]]});
+
+                            structure[keys[i]]=aggregateList[aggregateList.length - 1].value
+                        }
+                    }
+
+
+                    return aggregateList;
+                }
+                fetch('/api/'+ _this.file).then(function(response) {
+
+                    return response.json()
+
+                }).then(function(j){
+
+                    _this.set('data',j)
+
+                    _this.set('viewdata',mappedList( _this.data, []))
+
+                })
+
+
+
+            },
+            detached:function(){},
+            attributeChanged:function(){
+                console.log(this.data)
+            },
+            update:function(e){
+
+            }
+        })
+    </script>
+
+</dom-module>
