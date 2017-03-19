@@ -50,17 +50,17 @@
 
                 var _this = this
 
-                var mappedList = function(structure, aggregateList) {
+                var mappedList = function(structure, aggregateList, root) {
 
                     var keys = Object.keys(structure)
                     for (var i in keys){
 
                         if(typeof structure[keys[i]] === 'object'){
 
-                            mappedList(structure[keys[i]], aggregateList);
+                            mappedList(structure[keys[i]], aggregateList, root + keys[i].toString() + '.');
                         } else if(!(/^\{\{/.test(structure[keys[i]]))){
 
-                            aggregateList.push({key:keys[i], value:structure[keys[i]]});
+                            aggregateList.push({key:keys[i], value:structure[keys[i]], path:root});
 
                             structure[keys[i]]=aggregateList[aggregateList.length - 1].value
                         }
@@ -77,7 +77,7 @@
 
                     _this.set('data',j)
 
-                    _this.set('viewdata',mappedList( _this.data, []))
+                    _this.set('viewdata',mappedList( _this.data, [], ""))
 
                 })
 
@@ -89,7 +89,17 @@
                 console.log(this.data)
             },
             update:function(e){
+                var setToValue = function (obj, value, path) {
+                    var i;
+                    path = path.split('.');
+                    for (i = 0; i < path.length - 1; i++)
+                        obj = obj[path[i]];
 
+                    obj[path[i]] = value;
+                }
+                var index = e.model.__data__.index
+
+                setToValue(this.data, this.viewdata[index].value, this.viewdata[index].path + this.viewdata[index].key )
             }
         })
     </script>
